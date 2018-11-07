@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Point</title>
+    <style>
+        body {
+            margin: 0 auto;
+            min-width: 750px;
+            height: 560px;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            margin: 0 0;
+        }
+
+        nav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            display: block;
+        }
+
+        nav div {
+            float: right;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .ten {
+            font-size: 30px;
+            font-weight: bold;
+            position: relative;
+            left: 35%;
+        }
+
+        #searchId{
+            margin-left: 600px;
+            margin-top: 100px;
+        }
+
+        #searchId input{
+            line-height: 2em;
+            font-size: large;
+        }
+
+        #viewID{
+            font-size: 25px;
+            margin: 20px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        #detailPoint{
+            margin: 40px 0 0 500px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+
+    <script src="readFileJson.js"></script>
+</head>
+
+<body>
+<header>
+    <nav>
+        <a href="Home.html">Home</a>
+        <a href="project.html">Profile</a>
+        <a href="Subject.html">Subject</a>
+        <a class="active" href="Point.html">Point</a>
+        <a href="Scroce.html">Course</a>
+        <a href="Excercise.html">Exercises</a>
+        <a href="Library.html">Library</a>
+        <div>
+            <a href="Login.html">Login</a>
+            <a href="#signup">LogOut</a>
+        </div>
+    </nav>
+</header>
+
+<div id="searchId">
+    <input type="text" placeholder="Enter your ID" size="30" id="txtField">
+    <input type="submit" value="View" onclick="viewPoint()">
+</div>
+
+<div id="detailPoint">
+    <table id="point">
+        <thead>
+        <tr>
+            <td>STT</td>
+            <td>Ma Mon</td>
+            <td>Ten Mon</td>
+            <td>TC</td>
+            <td>Diem CC</td>
+            <td>Diem KT</td>
+            <td>Diem TH</td>
+            <td>Diem BT</td>
+            <td>Thi</td>
+            <td>Trung binh</td>
+        </tr>
+        </thead>
+    </table>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script>
+        function viewPoint() {
+            var values = document.getElementById("txtField").value;
+            // if (value == "aaa") {
+                $(document).ready(function () {
+                    $.getJSON("test.json", function (data) {
+                        var stu_data = '';
+                        $.each(data, function (key, value) {
+                            if(value.MSV == values) {
+                                stu_data += "<tr>";
+                                stu_data += "<td>" + value.MSV + "</td>";
+                                stu_data += "<td>" + value.STT + "</td>";
+                                stu_data += "<td>" + value.IDSubject + "</td>";
+                                stu_data += "<td>" + value.TC + "</td>";
+                                stu_data += "<td>" + value.CC + "</td>";
+                                stu_data += "<td>" + value.KT + "</td>";
+                                stu_data += "<td>" + value.TH + "</td>";
+                                stu_data += "<td>" + value.BT + "</td>";
+                                stu_data += "<td>" + value.Final + "</td>";
+                                stu_data += "<td>" + (value.CC + value.KT + value.TH + value.BT + value.Final)/5 + "</td>";
+                                stu_data += "</tr>";
+                            }
+                        });
+                        $('#point').append(stu_data);
+                    });
+                });
+            // }
+        }
+    </script>
+</div>
+
+<!--<script>-->
+    <!--function viewPoint() {-->
+
+        <!--// window.onload = function(){-->
+        <!--// alert("hi");-->
+        <!--var value = document.getElementById("txtField").value;-->
+        <!--if(value == "aaa"){-->
+            <!--var fs = require("fs");-->
+            <!--alert("Hehe");-->
+            <!--var data = fs.readFileSync("test.json", "utf8");-->
+            <!--var words = JSON.parse(data);-->
+            <!--// alert(words[0]);-->
+            <!--// }-->
+
+            <!--var table = document.getElementById("point");-->
+            <!--for (var i = 0; i < words.length; i++) {-->
+                <!--var tr = document.createElement("tr");-->
+
+                <!--for (var j = 0; j < words[i].length; j++) {-->
+                    <!--var td = document.createElement("td");-->
+                    <!--var txt = document.createTextNode(words[i][j]);-->
+                    <!--td.appendChild(txt);-->
+                    <!--tr.appendChild(td);-->
+                <!--}-->
+                <!--table.appendChild(tr);-->
+            <!--}-->
+        <!--}-->
+
+    <!--}-->
+<!--</script>-->
+
+</body>
+</html>
