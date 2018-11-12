@@ -40,28 +40,41 @@ import random
 #
 
 semesters = ("Spring", "Summer", "Autumn")
-subjects = ("idle1", "idle2", "idle3", "idle4", "idle6")
+subjects = ("idle1", "idle2", "idle3", "idle4", "idle5", "idle6")
 value = list()
 value1 = dict()
 value4 = dict()
 
-
-
-
-for i in range(0, 100):
-    value3 = dict()
-    for item in subjects:
-        value2 = dict({"TC": random.randint(2, 3), "CC": random.randint(4, 10), "TH": random.randint(3, 10),
+for i in range(1, 10):
+	value2 = dict({"MSV": "B15DCCN{}".format(503+i)})
+	for j in range(1,6):
+		value3 = dict({"TC": random.randint(2, 3), "CC": random.randint(4, 10), "TH": random.randint(3, 10),
                        "KT": random.randint(3, 10),
                        "BT": random.randint(5, 10), "Exam": random.randint(1, 10)})
-        value3.update({item: value2})
-    value4.update({"B15DCCN{}".format((503+i)): value3})
+		value2.update({"idle{}".format(j): value3})
 
-for semester in semesters:
-    value1.update({semester: value4})
+	value1.update(value2)
+	value.append(value2)
 
-value.append(value1)
 with io.open('point.json', 'w', encoding='utf-8') as f:
     f.write(json.dumps(value, ensure_ascii=False))
+# with io.open('summer.json', 'w', encoding='utf-8') as f:
+#     f.write(json.dumps(value, ensure_ascii=False))
+# with io.open('autumn.json', 'w', encoding='utf-8') as f:
+#     f.write(json.dumps(value, ensure_ascii=False))	
+
+# for i in range(0, 5):
+#     value3 = dict()
+#     for item in subjects:
+#         value2 = dict({"TC": random.randint(2, 3), "CC": random.randint(4, 10), "TH": random.randint(3, 10),
+#                        "KT": random.randint(3, 10),
+#                        "BT": random.randint(5, 10), "Exam": random.randint(1, 10)})
+#         value3.update({item: value2})
+#     value4.update({"B15DCCN{}".format((503+i)): value3})
+
+# for semester in semesters:
+#     value1.update({semester: value4})
+
+
 
 

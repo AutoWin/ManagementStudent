@@ -95,7 +95,7 @@
 </header>
 
 <div id="searchId">
-    <input type="text" placeholder="Enter your ID" size="30" id="txtField">
+    <input type="text" placeholder="Enter your ID" size="30" id="txtField" value="B15DCCN504">
     <input type="submit" value="View" onclick="viewPoint()">
 </div>
 
@@ -121,12 +121,14 @@
     <script>
         function viewPoint() {
             var values = document.getElementById("txtField").value;
-            // if (value == "aaa") {
+            alert(values);
                 $(document).ready(function () {
                     $.getJSON("test.json", function (data) {
                         var stu_data = '';
                         $.each(data, function (key, value) {
-                            if(value.MSV == values) {
+                            alert("Hello");
+                            if(value.MSV==values) {
+                                alert(values);
                                 stu_data += "<tr>";
                                 stu_data += "<td>" + value.MSV + "</td>";
                                 stu_data += "<td>" + value.STT + "</td>";
@@ -149,36 +151,9 @@
     </script>
 </div>
 
-<!--<script>-->
-    <!--function viewPoint() {-->
+<div class="box">
 
-        <!--// window.onload = function(){-->
-        <!--// alert("hi");-->
-        <!--var value = document.getElementById("txtField").value;-->
-        <!--if(value == "aaa"){-->
-            <!--var fs = require("fs");-->
-            <!--alert("Hehe");-->
-            <!--var data = fs.readFileSync("test.json", "utf8");-->
-            <!--var words = JSON.parse(data);-->
-            <!--// alert(words[0]);-->
-            <!--// }-->
-
-            <!--var table = document.getElementById("point");-->
-            <!--for (var i = 0; i < words.length; i++) {-->
-                <!--var tr = document.createElement("tr");-->
-
-                <!--for (var j = 0; j < words[i].length; j++) {-->
-                    <!--var td = document.createElement("td");-->
-                    <!--var txt = document.createTextNode(words[i][j]);-->
-                    <!--td.appendChild(txt);-->
-                    <!--tr.appendChild(td);-->
-                <!--}-->
-                <!--table.appendChild(tr);-->
-            <!--}-->
-        <!--}-->
-
-    <!--}-->
-<!--</script>-->
+</div>
 
 </body>
 </html>

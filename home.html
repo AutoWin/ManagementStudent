@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>From home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="home.css">
+    <script src="desktop_script.js"></script>
+</head>
+<body>
+<div class="box">
+    <h2>Thông tin tìm kiếm:</h2>
+    <form>
+			<span class="inputbox">
+				<!-- <span class="fa fa-trash-o icon" id="_delete"></span>		 -->
+				<input type="text" name="" class="Search" placeholder="Nhập mã sinh viên" autocomplete="off"
+                       id="studentId" value="B15DCCN504">
+			</span>
+        <span class="inputbox">
+				<input list="browsers" name="browser" placeholder="Khóa học" id="browserName" value="idle1">
+  				<datalist id="browsers">
+				    <option value="idle1">
+				    <option value="idle2">
+				    <option value="idle3">
+				    <option value="idle4">
+				    <option value="idle5">
+				    <option value="idle6">
+  				</datalist>
+			</span>
+        <span class="Ky">
+				<select id="semesterId">
+					<!--<option selected="" disabled="">Kỳ học</option>-->
+					<option>Spring</option>
+					<option>Summer</option>
+					<option>Autumn</option>
+				</select>
+			</span>
+        <span>
+				<button class="button_search" type="submit" onclick="searchFunction()">
+					<i class="fa fa-search icon"></i>
+				</button>
+			</span>
+    </form>
+    <marquee class="tt1" scrollamout="4">
+        Đã có điểm các môn học.
+    </marquee>
+</div>
+<div class="bangdiem">
+    <div>
+        <h3>
+            <span style="float: left;">Lê Đức Mạnh</span>
+            <span style="float: right;">B15DCCN341</span>
+        </h3>
+    </div>
+    <div class="br1"></div>
+    <div>
+        <br/>
+        <table id="point_tbl">
+            <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã môn học</th>
+                <th>Tên môn học</th>
+                <th>TC</th>
+                <th>CC</th>
+                <th>TH</th>
+                <th>KT</th>
+                <th>BT</th>
+                <th>Thi</th>
+                <th>TB</th>
+                <th>TK</th>
+                <th>Ghi chú</th>
+            </tr>
+            </thead>
+
+        </table>
+
+    </div>
+
+    <div class="div2">
+        <table id="tbl2">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Hệ 10</th>
+                <th>Hệ 4</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Điểm TB</td>
+                <td>8.5</td>
+                <td>3.70</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script>
+    // $('#point_tbl').append("<tr><td>1</td><td>B15DCCN504</td><td>idle1</td><td></td><td>3</td><td>8</td><td>6</td><td>7</td><td>8</td><td>7</td></tr>");
+    function searchFunction() {
+        let idStudents = document.getElementById("studentId").value;
+        let subjects = document.getElementById("browserName").value;
+        let semesters = document.getElementById("semesterId").value;
+        if (!idStudents || !subjects || !semesters) {
+            alert("Please enter your full condition!")
+        }
+        // alert(idStudents);
+        $(document).ready(function () {
+            // alert("HIIII");
+            $.getJSON("test.json", function (data) {
+                var stu_data = '';
+                var i = 0;
+                $.each(data, function (key, value) {
+                    if (value.MSV == idStudents) {
+                        // alert("HIIII");
+                        alert(value.MSV);
+                        stu_data += "<tbody>";
+                        stu_data += "<tr>";
+                        stu_data += "<td>" + (++i) + "</td>";
+                        // stu_data += "<td>" + value.MSV + "</td>";
+                        stu_data += "<td>" + "idle1" + "</td>";
+                        stu_data += "<td>" + "" + "</td>";
+                        stu_data += "<td>" + value.idle1.TC + "</td>";
+                        stu_data += "<td>" + value.idle1.CC + "</td>";
+                        stu_data += "<td>" + value.idle1.TH + "</td>";
+                        stu_data += "<td>" + value.idle1.KT + "</td>";
+                        stu_data += "<td>" + value.idle1.BT + "</td>";
+                        stu_data += "<td>" + value.idle1.Exam + "</td>";
+                        // stu_data += "<td>" + (i++) + "</td>";
+                        // stu_data += "<td>" + (i++) + "</td>";
+
+                        stu_data += "</tr>";
+                        stu_data += "</tbody>";
+                    }
+                });
+                // $('#point_tbl').append("<tr><td>1</td></tr>");
+                // alert(stu_data);
+                $('#point_tbl').append(stu_data);
+            });
+        });
+
+    }
+</script>
+</body>
+</html>
+
+<!--$(document).ready(function(){-->
+<!--$.ajax({-->
+<!--url: "http://api.openweathermap.org/data/2.5/weather?APPID=YOUR_API_KEY&id=5128581&units=imperial",-->
+<!--dataType: 'json',-->
+<!--success: function(data) {-->
+<!--alert("Temperature is: " + data.main.temp );-->
+<!--},-->
+<!--error: function() {-->
+<!--alert("error");-->
+<!--}-->
+<!--});-->
+<!--});-->

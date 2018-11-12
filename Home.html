@@ -49,18 +49,34 @@
         }
 
         /*main*/
-        secion{
+        main section{
+            width: 93%;
+            height: 350px;
+            margin: 20px auto;
+            background-color: #4CAF50;
             display: flex;
-            flex-direction: row;
         }
 
-        .div1{
-            flex-grow: 3;
-            background-color: #aaaaaa;
+        div{
+            color: white;
+            background-color: #dddddd;
+            margin-right: 10px;
+            /*text-shadow: 1px 1px 1px 1px black;*/
+            flex: 1;
         }
-        .div2{flex-grow: 6;
-            background-color: #4CAF50;
+
+        .div2 img{
+            width: 100%;
+            height: 100%;
         }
+
+        /*.div1{*/
+            /*flex-grow: 3;*/
+            /*background-color: #aaaaaa;*/
+        /*}*/
+        /*.div2{flex-grow: 6;*/
+            /*background-color: #4CAF50;*/
+        /*}*/
     </style>
 </head>
 <body>
@@ -80,13 +96,44 @@
     </nav>
 </header>
 <main>
-    <marquee onMouseOver="this.stop();" onMouseOut="this.start();"><a href="#">2 </a>2222222222</marquee>
+    <!--<marquee onMouseOver="this.stop();" onMouseOut="this.start();"><a href="#">2 </a>2222222222</marquee>-->
     <section>
-        <div class="div1">
-            <p> Thong Bao</p>
+        <div class="notification">
+            <marquee behavior="scroll" direction="up" onMouseOver="this.stop();" onMouseOut="this.start();">
+                <p><a href="#">Thông báo: V/v Cập nhật điểm tính đến hết học kỳ phụ năm học 2017-2018</a></p>
+                <p><a href="#">Thông báo: Mở Hệ thống đăng ký môn học cho sinh viên khóa 2018</a></p>
+                <p><a href="#">Thông báo: V/v Mở hệ thống đăng ký môn học cho sinh viên đăng ký học lại/học ghép học kỳ 1 năm học 2018-2019</a></p>
+                <p><a href="#">Thông báo: V/v Mở hệ thống đăng ký học lại học ghép học kỳ 1 năm học 2017-2018</a></p>
+                <p><a href="#">Thông báo: V/v Mở hệ thống đăng ký môn học cho các sinh viên khóa 2016 đăng ký thử</a></p>
+                <p><a href="#">Thông báo: V/v Xử lý các đơn đăng ký môn học của sinh viên</a></p>
+
+            </marquee>
         </div>
         <div class="div2">
-            <p> Nhac nho</p>
+            <img src="image1.png"/>
+        </div>
+        <div>
+            <p id="mapholder"></p>
+
+            <script>
+                var x = document.getElementById("mapholder");
+
+                function getLocation() {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(showPosition);
+                    } else {
+                        x.innerHTML = "Geolocation is not supported by this browser.";
+                    }
+                }
+
+                function showPosition(position) {
+                    var latlon = position.coords.latitude + "," + position.coords.longitude;
+                    alert(latlon);
+                    var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false&key=AIzaSyDSZlg_8zH_ZqbxgOcz-xvsGUSJ21Sooqg";
+
+                    document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+                }
+            </script>
         </div>
     </section>
 </main>
