@@ -8,13 +8,28 @@
     <script src="desktop_script.js"></script>
 </head>
 <body>
+<header>
+    <nav>
+        <a class="active" href="Home.html">Home</a>
+        <a href="project.html">Profile</a>
+        <a href="Subject.html">Subject</a>
+        <a href="Point.html">Point</a>
+        <a href="Scroce.html">Course</a>
+        <a href="Excercise.html">Exercises</a>
+        <a href="Library.html">Library</a>
+        <div>
+            <a href="Login.html">Login</a>
+            <a href="#signup">LogOut</a>
+        </div>
+    </nav>
+</header>
 <div class="box">
     <h2>Thông tin tìm kiếm:</h2>
     <form>
 			<span class="inputbox">
 				<!-- <span class="fa fa-trash-o icon" id="_delete"></span>		 -->
 				<input type="text" name="" class="Search" placeholder="Nhập mã sinh viên" autocomplete="off"
-                       id="studentId" value="B15DCCN504">
+                       id="studentId" value="B15DCCN507">
 			</span>
         <span class="inputbox">
 				<input list="browsers" name="browser" placeholder="Khóa học" id="browserName" value="idle1">
@@ -36,7 +51,7 @@
 				</select>
 			</span>
         <span>
-				<button class="button_search" type="submit" onclick="searchFunction()">
+				<button class="button_search" type="button" onclick="searchFunction()">
 					<i class="fa fa-search icon"></i>
 				</button>
 			</span>
@@ -81,24 +96,25 @@
         <table id="tbl2">
             <thead>
             <tr>
-                <th></th>
+                <!--<th></th>-->
                 <th>Hệ 10</th>
                 <th>Hệ 4</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>Điểm TB</td>
-                <td>8.5</td>
-                <td>3.70</td>
-            </tr>
-            </tbody>
+            <!--<tbody>-->
+            <!--<tr>-->
+                <!--<td>Điểm TB</td>-->
+                <!--<td>8.5</td>-->
+                <!--<td>3.70</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
         </table>
     </div>
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script>
+    // var stu_data = '';
     // $('#point_tbl').append("<tr><td>1</td><td>B15DCCN504</td><td>idle1</td><td></td><td>3</td><td>8</td><td>6</td><td>7</td><td>8</td><td>7</td></tr>");
     function searchFunction() {
         let idStudents = document.getElementById("studentId").value;
@@ -110,8 +126,10 @@
         // alert(idStudents);
         $(document).ready(function () {
             // alert("HIIII");
-            $.getJSON("test.json", function (data) {
+            $.getJSON("point.json", function (data) {
                 var stu_data = '';
+                var table2 = '';
+                var tempt;
                 var i = 0;
                 $.each(data, function (key, value) {
                     if (value.MSV == idStudents) {
@@ -129,19 +147,29 @@
                         stu_data += "<td>" + value.idle1.KT + "</td>";
                         stu_data += "<td>" + value.idle1.BT + "</td>";
                         stu_data += "<td>" + value.idle1.Exam + "</td>";
-                        // stu_data += "<td>" + (i++) + "</td>";
-                        // stu_data += "<td>" + (i++) + "</td>";
-
+                        stu_data += "<td>" + (value.idle1.CC*0.1 + value.idle1.TH*0.1 + value.idle1.KT*0.1 + value.idle1.BT*0.1 + value.idle1.Exam*0.6).toString().substr(0,3) + "</td>";
+                        stu_data += "<td>" + "" + "</td>";
+                        stu_data += "<td>" + "" + "</td>";
                         stu_data += "</tr>";
                         stu_data += "</tbody>";
+
+                        tempt = (value.idle1.CC*0.1 + value.idle1.TH*0.1 + value.idle1.KT*0.1 + value.idle1.BT*0.1 + value.idle1.Exam*0.6);
+                        table2 += "<tbody>";
+                        table2 += "<tr>";
+                        // stu_data += "<td>" + (1) + "</td>";
+                        table2 += "<td>" + tempt.toString().substr(0,3) + "</td>";
+                        table2 += "<td>" + (tempt*0.4).toString().substr(0,3) + "</td>";
+                        table2 += "</tr>";
+                        table2 += "</tbody>";
+
                     }
                 });
                 // $('#point_tbl').append("<tr><td>1</td></tr>");
                 // alert(stu_data);
                 $('#point_tbl').append(stu_data);
+                $('#tbl2').append(table2);
             });
         });
-
     }
 </script>
 </body>
