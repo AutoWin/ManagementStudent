@@ -73,7 +73,7 @@
         <table id="point_tbl">
             <thead>
             <tr>
-                <th>STT</th>
+                <!--<th>STT</th>-->
                 <th>Mã môn học</th>
                 <th>Tên môn học</th>
                 <th>TC</th>
@@ -128,14 +128,14 @@
                 var tempt;
                 var i = 0;
                 $.each(data, function (key, value) {
-                    if (value.MSV == idStudents) {
+                    if (value.MSV == idStudents && subjects == "idle1") {
                         alert(value.MSV);
                         stu_data += "<tbody>";
                         // for(var j=1; j<=5; j++){
                         //
                         // }
                         stu_data += "<tr>";
-                        stu_data += "<td>" + (++i) + "</td>";
+                        // stu_data += "<td>" + (++i) + "</td>";
                         stu_data += "<td>" + "idle1" + "</td>";
                         stu_data += "<td>" + "" + "</td>";
                         stu_data += "<td>" + value.idle1.TC + "</td>";
@@ -148,9 +148,20 @@
                         stu_data += "<td>" + "" + "</td>";
                         stu_data += "<td>" + "" + "</td>";
                         stu_data += "</tr>";
+                        stu_data += "</tbody>";
 
+                        tempt = (value.idle1.CC*0.1 + value.idle1.TH*0.1 + value.idle1.KT*0.1 + value.idle1.BT*0.1 + value.idle1.Exam*0.6);
+                        table2 += "<tbody>";
+                        table2 += "<tr>";
+                        table2 += "<td>" + tempt.toString().substr(0,3) + "</td>";
+                        table2 += "<td>" + (tempt*0.4).toString().substr(0,3) + "</td>";
+                        table2 += "</tr>";
+                        table2 += "</tbody>";
+
+                    }
+                    else if (value.MSV == idStudents && subjects == "idle2"){
                         stu_data += "<tr>";
-                        stu_data += "<td>" + (++i) + "</td>";
+                        // stu_data += "<td>" + (++i) + "</td>";
                         stu_data += "<td>" + "idle2" + "</td>";
                         stu_data += "<td>" + "" + "</td>";
                         stu_data += "<td>" + value.idle2.TC + "</td>";
@@ -164,8 +175,17 @@
                         stu_data += "<td>" + "" + "</td>";
                         stu_data += "</tr>";
 
+                        tempt = (value.idle2.CC*0.1 + value.idle2.TH*0.1 + value.idle2.KT*0.1 + value.idle2.BT*0.1 + value.idle2.Exam*0.6);
+                        table2 += "<tbody>";
+                        table2 += "<tr>";
+                        table2 += "<td>" + tempt.toString().substr(0,3) + "</td>";
+                        table2 += "<td>" + (tempt*0.4).toString().substr(0,3) + "</td>";
+                        table2 += "</tr>";
+                        table2 += "</tbody>";
+                    }
+                    else if (value.MSV == idStudents && subjects == "idle3"){
                         stu_data += "<tr>";
-                        stu_data += "<td>" + (++i) + "</td>";
+                        // stu_data += "<td>" + (++i) + "</td>";
                         stu_data += "<td>" + "idle3" + "</td>";
                         stu_data += "<td>" + "" + "</td>";
                         stu_data += "<td>" + value.idle3.TC + "</td>";
@@ -178,8 +198,16 @@
                         stu_data += "<td>" + "" + "</td>";
                         stu_data += "<td>" + "" + "</td>";
                         stu_data += "</tr>";
-                        stu_data += "</tbody>";
 
+                        tempt = (value.idle3.CC*0.1 + value.idle3.TH*0.1 + value.idle3.KT*0.1 + value.idle3.BT*0.1 + value.idle3.Exam*0.6);
+                        table2 += "<tbody>";
+                        table2 += "<tr>";
+                        table2 += "<td>" + tempt.toString().substr(0,3) + "</td>";
+                        table2 += "<td>" + (tempt*0.4).toString().substr(0,3) + "</td>";
+                        table2 += "</tr>";
+                        table2 += "</tbody>";
+                    }
+                    else if (value.MSV == idStudents && subjects == "idle4"){
                         stu_data += "<tr>";
                         stu_data += "<td>" + (++i) + "</td>";
                         stu_data += "<td>" + "idle4" + "</td>";
@@ -195,8 +223,17 @@
                         stu_data += "<td>" + "" + "</td>";
                         stu_data += "</tr>";
 
+                        tempt = (value.idle4.CC*0.1 + value.idle4.TH*0.1 + value.idle4.KT*0.1 + value.idle4.BT*0.1 + value.idle4.Exam*0.6);
+                        table2 += "<tbody>";
+                        table2 += "<tr>";
+                        table2 += "<td>" + tempt.toString().substr(0,3) + "</td>";
+                        table2 += "<td>" + (tempt*0.4).toString().substr(0,3) + "</td>";
+                        table2 += "</tr>";
+                        table2 += "</tbody>";
+                    }
+                    else if (value.MSV == idStudents && subjects == "idle5"){
                         stu_data += "<tr>";
-                        stu_data += "<td>" + (++i) + "</td>";
+                        // stu_data += "<td>" + (++i) + "</td>";
                         stu_data += "<td>" + "idle5" + "</td>";
                         stu_data += "<td>" + "" + "</td>";
                         stu_data += "<td>" + value.idle5.TC + "</td>";
@@ -210,17 +247,13 @@
                         stu_data += "<td>" + "" + "</td>";
                         stu_data += "</tr>";
 
-                        tempt = ((value.idle1.CC*0.1 + value.idle1.TH*0.1 + value.idle1.KT*0.1 + value.idle1.BT*0.1 + value.idle1.Exam*0.6) +
-                            (value.idle2.CC*0.1 + value.idle2.TH*0.1 + value.idle2.KT*0.1 + value.idle2.BT*0.1 + value.idle2.Exam*0.6) +
-                            (value.idle3.CC*0.1 + value.idle3.TH*0.1 + value.idle3.KT*0.1 + value.idle3.BT*0.1 + value.idle3.Exam*0.6) + (value.idle4.CC*0.1 + value.idle4.TH*0.1 + value.idle4.KT*0.1 + value.idle4.BT*0.1 + value.idle4.Exam*0.6) +
-                            (value.idle5.CC*0.1 + value.idle5.TH*0.1 + value.idle5.KT*0.1 + value.idle5.BT*0.1 + value.idle5.Exam*0.6))/5;
+                        tempt = (value.idle5.CC*0.1 + value.idle5.TH*0.1 + value.idle5.KT*0.1 + value.idle5.BT*0.1 + value.idle5.Exam*0.6);
                         table2 += "<tbody>";
                         table2 += "<tr>";
                         table2 += "<td>" + tempt.toString().substr(0,3) + "</td>";
                         table2 += "<td>" + (tempt*0.4).toString().substr(0,3) + "</td>";
                         table2 += "</tr>";
                         table2 += "</tbody>";
-
                     }
                 });
                 $('#point_tbl').append(stu_data);
