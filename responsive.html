@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="Style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		
+		<div class="header">
+			<h1>TRA CỨU ĐIỂM THI SINH VIÊN PTIT</h1>
+			<p>sinhvienPTIT</p>
+		</div>
+		<div class= "menu">
+			<ul>
+				<li><a href="#">Trang chủ</a></li>
+				<li><a href="home.html">Tra cứu điểm</a></li>
+			</ul>
+		</div>
+
+		<div id="weather">
+		</div>
+		<script>
+            $(document).ready(function () {
+                $.ajax({
+                    url: "http://api.openweathermap.org/data/2.5/weather?q=Vietnam&APPID=5a3ce50c1b636d1ef7db2529bf088d21",
+                    dataType: 'json',
+                    success: function (data) {
+                        var element = document.getElementById("weather");
+                        var para = document.createElement("p");
+                        var node = document.createTextNode("Temperature is: " + (data.main.temp - 273).toString().substr(0, 4) + " C");
+                        para.appendChild(node);
+                        element.appendChild(para);
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+            });
+		</script>
+		<div class="main">
+			<div class="left">
+				<span id="thongbao">THÔNG BÁO SINH VIÊN</span>
+				<div class="noidungtb">
+					<p>Phòng Giáo vụ thông báo:
+
+
+					 <marquee direction="up"  onMouseOver="this.stop();" onMouseOut="this.start();">
+			                <p><a href="#">Thông báo: V/v Cập nhật điểm tính đến hết học kỳ phụ năm học 2017-2018</a></p>
+			                <p><a href="#">Thông báo: Mở Hệ thống đăng ký môn học cho sinh viên khóa 2018</a></p>
+			                <p><a href="#">Thông báo: V/v Mở hệ thống đăng ký môn học cho sinh viên đăng ký học lại/học ghép học kỳ 1 năm học 2018-2019</a></p>
+			                <p><a href="#">Thông báo: V/v Mở hệ thống đăng ký học lại học ghép học kỳ 1 năm học 2017-2018</a></p>
+			                <p><a href="#">Thông báo: V/v Mở hệ thống đăng ký môn học cho các sinh viên khóa 2016 đăng ký thử</a></p>
+			                <p><a href="#">Thông báo: V/v Xử lý các đơn đăng ký môn học của sinh viên</a></p>
+
+           			 </marquee>
+				</div>
+
+			</div>
+			
+			<div class="right">
+				<img src="download.jpg" />
+			</div>
+		</div>
+	</div>
+
+</div>
+</body>
+</html>
